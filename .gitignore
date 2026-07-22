@@ -27,5 +27,11 @@ Thumbs.db
 uploads/
 
 documents/
+_docx_review/
 test.sql
 Insurance Management Platform.docx
+
+# AI Assistant Caches
+.agents/
+.claude/
+.windsurf/

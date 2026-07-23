@@ -3,11 +3,14 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import Login from '../pages/auth/Login';
 import Register from '../pages/auth/Register';
 import ProtectedRoute from './ProtectedRoute';
+import CustomerList from '../pages/Customers/CustomerList';
+import CustomerProfile from '../pages/Customers/CustomerProfile';
+import CustomerForm from '../pages/Customers/CustomerForm';
 
-// Placeholder components for the dashboards (To be built in later modules)
-const AdminDashboard = () => <div className="p-8 mt-16 text-center text-2xl">Admin Dashboard (Under Construction)</div>;
-const AgentDashboard = () => <div className="p-8 mt-16 text-center text-2xl">Agent Dashboard (Under Construction)</div>;
-const CustomerDashboard = () => <div className="p-8 mt-16 text-center text-2xl">Customer Dashboard (Under Construction)</div>;
+// Dashboard Pages (Protected)
+import AdminDashboard from '../pages/Dashboards/AdminDashboard';
+import AgentDashboard from '../pages/Dashboards/AgentDashboard';
+import CustomerDashboard from '../pages/Dashboards/CustomerDashboard';
 
 const AppRoutes = () => {
   return (
@@ -48,6 +51,11 @@ const AppRoutes = () => {
 
       {/* Catch-all route: redirect unknown URLs to login */}
       <Route path="*" element={<Navigate to="/" replace />} />
+      {/* Customer Management Routes */}
+      <Route path="/customers" element={<CustomerList />} />
+      <Route path="/customers/create" element={<CustomerForm />} />
+      <Route path="/customers/:id" element={<CustomerProfile />} />
+      <Route path="/customers/edit/:id" element={<CustomerForm />} />
     </Routes>
   );
 };

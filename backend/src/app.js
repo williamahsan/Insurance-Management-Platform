@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const authRoutes = require('./routes/auth.routes');
 const customerRoutes = require('./routes/customer.routes');
+const policyRoutes = require('./routes/policy.routes');
 
 const app = express();
 
@@ -12,6 +13,7 @@ app.use(cors());
 // Routes
 app.use('/api/v1/auth', authRoutes);
 app.use('/api/v1/customers', customerRoutes);
+app.use('/api/v1/policies', policyRoutes);
 
 // Global Error Handler (Optional but recommended)
 app.use((err, req, res, next) => {

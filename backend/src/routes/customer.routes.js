@@ -6,13 +6,18 @@ const customerController = require('../controllers/customer.controller');
 // you should import it here and add it to these routes.
 // const { verifyToken, isAdminOrAgent } = require('../middleware/auth.middleware');
 
+const { verifyToken } = require('../middleware/auth.middleware');
+const { authorizeRole } = require('../middleware/role.middleware');
+
+router.use(verifyToken);
+
 // Create a new customer profile
 // Example: POST /api/v1/customers
 router.post('/', customerController.createCustomer);
 
 // Get list of all customers (with optional ?search= query)
 // Example: GET /api/v1/customers or GET /api/v1/customers?search=john
-router.get('/', customerController.getCustomerList);
+router.get('/', authorizeRole('admin', 'agent'), customerController.getCustomerList);
 
 // Get a single customer's full profile and history by ID
 // Example: GET /api/v1/customers/5
